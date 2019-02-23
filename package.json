@@ -1,0 +1,28 @@
+{
+  "name": "gallery-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE ./dist/index.js",
+    "dev": "tsc-watch ./src/index.ts --outDir ./dist --onSuccess 'node ./dist/index.js' --onFailure 'echo Beep! Compilation Failed' --compiler typescript/bin/tsc",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.1",
+    "@types/mongodb": "^3.1.19",
+    "@types/node": "^10.12.21",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "tsc-watch": "^1.1.36",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1"
+  }
+}
