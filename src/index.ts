@@ -7,9 +7,7 @@ const app = express();
 const port = process.env.port || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({
-  type: "*/*"
-}));
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(cors());
 
 routes(app);
