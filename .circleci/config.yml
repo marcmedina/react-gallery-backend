@@ -19,7 +19,8 @@ jobs:
           command: npm run build
       - run:
           name: copy modules
-          command: cp -R ./node_modules ./dist
+          command: cp -R ./node_modules ./dist && mv ./dist ./deployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID
+
       - run:
           name: deploy
-          command: scp -o StrictHostKeyChecking=no -pr ./dist/* $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN/depployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID
+          command: scp -o StrictHostKeyChecking=no -pr ./deployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN/
