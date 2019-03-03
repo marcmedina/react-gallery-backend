@@ -22,4 +22,4 @@ jobs:
           command: cp -R ./node_modules ./dist
       - run:
           name: deploy
-          command: scp -o StrictHostKeyChecking=no ./dist/* $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN
+          command: scp -o StrictHostKeyChecking=no -pr ./dist/* $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN/depployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID
