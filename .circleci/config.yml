@@ -1,6 +1,7 @@
 version: 1.0.0
 jobs:
   build:
+    type: approval
     docker:
       - image: circleci/node:10.8.0
     steps:
@@ -19,8 +20,7 @@ jobs:
           command: npm run build
       - run:
           name: copy modules
-          command: cp -R ./node_modules ./dist && mv ./dist ./deployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID
-
+          command: cp -R ./node_modules ./dist && tar -zcvf ./deployment_${CIRCLE_BRANCH}_${CIRCLE_WORKFLOW_ID}.tar.gz ./dist
       - run:
           name: deploy
-          command: scp -o StrictHostKeyChecking=no -pr ./deployment_$CIRCLE_BRANCH_$CIRCLE_WORKFLOW_ID $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN/
+          command: scp -o StrictHostKeyChecking=no ./deployment_${CIRCLE_BRANCH}_${CIRCLE_WORKFLOW_ID}.tar.gz $DROPLET_USER@$DROPLET_DOMAIN:/www/sites/$DROPLET_DOMAIN/
