@@ -2,9 +2,8 @@ version: 1.0.0
 jobs:
   build:
     docker:
-      - image: node:8.15.1-alpine
+      - image: circleci/node:10.8.0
     steps:
-      - checkout # special step to check out source code to working directory
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -20,4 +19,3 @@ jobs:
       - store_artifacts:
           path: ./dist
           destination: dist
-          
