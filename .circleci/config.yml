@@ -17,6 +17,7 @@ jobs:
       - run:
             name: build application
             command: npm run build
-      - run:
-          name: deploy
-          command: echo "this is where we'd ship off the code"
+      - store_artifacts:
+          path: ./dist
+          destination: dist
+          
